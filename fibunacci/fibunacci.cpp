@@ -1,27 +1,21 @@
 #include <iostream>
 
-int fibonacciLastDigit(int numb)
+int main()
 {
-    if (numb <= 1)
-        return numb;
+    long long number;
+    long long previous = 0, current = 1, result = 0;
+    std::cin >> number;
+    if (number == 0)
+        result = previous;
+    if (number == 1)
+        result = current;
 
-    int previous = 0;
-    int current = 1;
-
-    for (int i = 0; i < numb - 1; ++i)
+    for (long long i = 2; i <= number; i++)
     {
-        int temporaryNumb = previous;
+        result = previous + current;
         previous = current;
-        current = temporaryNumb + current;
+        current = result;
     }
 
-    return current % 10;
-}
-
-int main () {
-    int n;
-    std::cout << "Enter a number: ";
-    std::cin >> n;
-    std::cout << "Last digit of the " << n << "th Fibonacci number: " << fibonacciLastDigit(n) << std::endl;
-    return 0;
+    std::cout << result << std::endl;
 }
